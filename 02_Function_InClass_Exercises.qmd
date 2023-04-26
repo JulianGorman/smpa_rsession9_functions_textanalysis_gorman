@@ -28,8 +28,14 @@ options(tigris_class = "sf")
 ```{r}
 
 
+sum_mynumbers <- function(mynumber1, mynumber2){
+  
+  result <- mynumber1 + mynumber2
+  
+  return(result)
+}
 
-
+sum_mynumbers(2, 54)
 
 ```
 
@@ -38,9 +44,14 @@ options(tigris_class = "sf")
 ```{r}
 
 
+mean_list <- function(mynumbers){
+  
+  result <- mean(mynumbers)
+  
+  return(result)
+}
 
-
-
+mean_list(c(54, 65, 76, 78))
 
 ```
 
@@ -50,8 +61,14 @@ options(tigris_class = "sf")
 ```{r}
 
 
+mean_list_text <- function(mynumbers){
+  
+  result <- paste0("The mean is ", mean(mynumbers))
+  
+  return(result)
+}
 
-
+mean_list_text(c(84, 60, 99, 88))
 
 ```
 
@@ -70,12 +87,27 @@ head(flights)
 
 
 
+point_of_origin <- function(originname){
+  
+   
+  result <- flights %>% 
+    filter(origin == originname)
+  
+  return(result)
+}
+
+
+```
+
+```{r}
+
+point_of_origin("LGA")
+
 
 
 
 
 ```
-
 5) Similarly, using the `flights` dataset, create a function that:
 
 -   filters the data frame to only include records from a single originating airport (column name `origin`), and then
@@ -84,10 +116,18 @@ head(flights)
 
 ```{r}
 
+carrier_count <- function(originname){
+  
+   
+  result <- flights %>% 
+    filter(origin == originname) %>% 
+    count(carrier, sort = TRUE) %>% 
+    head(1) %>% 
+    select(carrier)
+  
+  return(result)
+}
 
-
-
-
+carrier_count("EWR")
 
 ```
-
